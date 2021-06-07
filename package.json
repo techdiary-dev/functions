@@ -1,0 +1,15 @@
+{
+  "name": "netlify-lambda-demo",
+  "dependencies": {
+    "@netlify/functions": "^0.7.2",
+    "cheerio": "^1.0.0-rc.9",
+    "cloudinary": "^1.26.0",
+    "isomorphic-unfetch": "^3.1.0",
+    "regenerator-runtime": "^0.13.7",
+    "serverless-http": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^15.12.1",
+    "typescript": "^3.9.9"
+  }
+}
