@@ -1,7 +1,7 @@
 import { v2 as cloudinary } from "cloudinary";
 import { promisify } from "util";
 import { Handler } from "@netlify/functions";
-import { response } from "../lib/helpers";
+import { response, headers } from "../lib/helpers";
 
 const config = {
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -14,18 +14,21 @@ function getCloudinaryPublicId(url: string) {
 }
 
 export const handler: Handler = async (event) => {
-  if (!event.headers.host?.includes(process.env.HOST_URL as string)) {
-    return response(
-      {
-        message: "You can't delete our images. Please don't do that next time",
-      },
-      401
-    );
+  if (event.httpMethod === "OPTIONS") {
+    return { statusCode: 200, headers };
   }
+  // if (!event.headers.host?.includes(process.env.HOST_URL as string)) {
+  //   return response(
+  //     {
+  //       message: "You can't delete our images. Please don't do that next time",
+  //     },
+  //     401
+  //   );
+  // }
 
-  if (event.httpMethod !== "DELETE") {
+  if (event.httpMethod !== "POST") {
     return response({
-      message: "Request type must be DELETE",
+      message: "Request type must be POST",
     });
   }
   try {

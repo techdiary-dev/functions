@@ -1,9 +1,9 @@
 import { Response } from "@netlify/functions/src/function/response";
 
 export const headers = {
-  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Origin": `${process.env.HOST_URL}`,
   "Access-Control-Allow-Headers":
-    "Origin, X-Requested-With, Content-Type, Accept",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization",
   "Content-Type": "application/json",
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
   "Access-Control-Max-Age": "2592000",
