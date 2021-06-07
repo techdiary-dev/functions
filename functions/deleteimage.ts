@@ -22,13 +22,14 @@ export const handler: Handler = async (event) => {
       401
     );
   }
-  cloudinary.config(config);
+
   if (event.httpMethod !== "DELETE") {
     return response({
       message: "Request type must be DELETE",
     });
   }
   try {
+    cloudinary.config(config);
     const body = JSON.parse(event.body as string);
 
     if (!body.asset_url) {
@@ -48,6 +49,6 @@ export const handler: Handler = async (event) => {
 
     return response(res, 200);
   } catch (error) {
-    return response({ message: "Internal Server Error" }, 500);
+    return response({ error }, 500);
   }
 };
