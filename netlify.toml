@@ -1,6 +1,5 @@
 [build]
   functions = "functions/"
-  command = "sed -i \"s|HOST_URL|${HOST_URL}|g\" netlify.toml && yarn build"
 [[redirects]]
   from = "/*"
   to = "/.netlify/functions/:splat"
@@ -8,4 +7,4 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    Access-Control-Allow-Origin = "HOST_URL"
+    Access-Control-Allow-Origin = "*"
