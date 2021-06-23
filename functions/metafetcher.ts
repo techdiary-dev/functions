@@ -4,14 +4,6 @@ import * as cheerio from "cheerio";
 import { response, headers } from "../lib/helpers";
 export const handler: Handler = async (event, context) => {
   //   console.log("queryStringParameters", event.queryStringParameters);
-  if (!event.headers.host?.includes(process.env.HOST_URL as string)) {
-    return response(
-      {
-        message: "Too many response",
-      },
-      401
-    );
-  }
   try {
     if (event.httpMethod === "OPTIONS") {
       return { statusCode: 200, headers };
