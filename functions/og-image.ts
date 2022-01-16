@@ -1,9 +1,8 @@
 import { Handler } from "@netlify/functions";
 import puppeteer from "puppeteer-core";
 import chrome from "chrome-aws-lambda";
-const wait = require("waait");
+import wait from "waait";
 
-require("dotenv").config();
 const cached = new Map();
 
 const getScreenShot = async () => {
