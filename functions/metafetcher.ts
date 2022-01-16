@@ -3,7 +3,6 @@ import fetch from "isomorphic-unfetch";
 import * as cheerio from "cheerio";
 import { response, headers } from "../lib/helpers";
 export const handler: Handler = async (event, context) => {
-  //   console.log("queryStringParameters", event.queryStringParameters);
   try {
     if (event.httpMethod === "OPTIONS") {
       return { statusCode: 200, headers };
