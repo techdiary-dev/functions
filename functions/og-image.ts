@@ -21,19 +21,22 @@ const getScreenShot = async () => {
   const page = await browser.newPage();
   await page.goto(`${process.env.CLIENT_URL}/thumbnail`);
   await wait(500);
-  const buffer = await page.screenshot({ type: "png" });
-  const base64Image = buffer.toString("base64");
+  console.log("i am in techdiary");
+  // const buffer = await page.screenshot({ type: "png" });
+  // const base64Image = buffer.toString("base64");
   // cached.set("heyy", base64Image);
   browser.close();
-  return base64Image;
+  // return base64Image;
 };
 
 export const handler: Handler = async (event, context) => {
-  const base64Image = await getScreenShot();
+  // const base64Image = await getScreenShot();
 
   return {
     statusCode: 200,
-    body: base64Image,
+    body: JSON.stringify({
+      message: "Go Serverless v1.0! Your function executed successfully!",
+    }),
     isBase64Encoded: true,
   };
 };
