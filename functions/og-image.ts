@@ -35,7 +35,7 @@ const getScreenShot = async () => {
 
   console.log(headingText);
 
-  // browser.close();
+  browser.close();
 
   return headingText;
 };
