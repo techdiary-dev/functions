@@ -38,6 +38,6 @@ export const handler: Handler = async (event, context) => {
     body: JSON.stringify({
       message: "Go Serverless v1.0! Your function executed successfully!",
     }),
-    isBase64Encoded: true,
+    // isBase64Encoded: true,
   };
 };
