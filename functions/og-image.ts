@@ -8,9 +8,7 @@ import wait from "waait";
 const getScreenShot = async () => {
   const browser = await puppeteer.launch({
     product: "chrome",
-    executablePath: process.env.CHROME_EXECUTEABLE_PATH
-      ? process.env.CHROME_EXECUTEABLE_PATH
-      : await chrome.executablePath,
+    executablePath: await chrome.executablePath,
     args: chrome.args,
     headless: true,
     defaultViewport: {
