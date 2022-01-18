@@ -27,12 +27,12 @@ const getScreenShot = async () => {
   // const base64Image = buffer.toString("base64");
   // cached.set("heyy", base64Image);
 
-  const headingText = await page.$eval(
-    "#__layout > main > div > div.flex-1 > h3",
-    (el) => el.textContent
-  );
+  // const headingText = await page.$eval(
+  //   "#__layout > main > div > div.flex-1 > h3",
+  //   (el) => el.textContent
+  // );
 
-  console.log(headingText);
+  // console.log(headingText);
 
   browser.close();
 
