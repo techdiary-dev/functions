@@ -22,6 +22,7 @@ const getScreenShot = async () => {
   await page.goto(`${process.env.CLIENT_URL}/thumbnail`);
   await wait(500);
   console.log("i am in techdiary");
+  console.log("URL: " + process.env.CLIENT_URL);
   // const buffer = await page.screenshot({ type: "png" });
   // const base64Image = buffer.toString("base64");
   // cached.set("heyy", base64Image);
