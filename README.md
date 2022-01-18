@@ -1,6 +1,6 @@
 # Techdiary Functions
 
-with Netlify
+[![Netlify Status](https://api.netlify.com/api/v1/badges/03afde84-0e44-495a-9583-a13d85a6bfdb/deploy-status)](https://app.netlify.com/sites/techdiary-functions/deploys)
 
 ## Delete images from cloudinary
 
