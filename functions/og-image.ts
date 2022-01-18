@@ -25,6 +25,7 @@ const getScreenShot = async () => {
   const buffer = await page.screenshot({ type: "png" });
   const base64Image = buffer.toString("base64");
   cached.set("heyy", base64Image);
+  browser.close();
   return base64Image;
 };
 
