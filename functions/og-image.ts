@@ -3,13 +3,12 @@ import puppeteer from "puppeteer-core";
 import chrome from "chrome-aws-lambda";
 import wait from "waait";
 
-const cached = new Map();
+// const cached = new Map();
 
 const getScreenShot = async () => {
   const browser = await puppeteer.launch({
     product: "chrome",
-    executablePath:
-      process.env.CHROME_EXECUTEABLE_PATH || (await chrome.executablePath),
+    executablePath: await chrome.executablePath,
     args: chrome.args,
     headless: true,
     defaultViewport: {
@@ -24,7 +23,7 @@ const getScreenShot = async () => {
   await wait(500);
   const buffer = await page.screenshot({ type: "png" });
   const base64Image = buffer.toString("base64");
-  cached.set("heyy", base64Image);
+  // cached.set("heyy", base64Image);
   browser.close();
   return base64Image;
 };
