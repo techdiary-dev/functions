@@ -2,21 +2,38 @@ import { Handler } from "@netlify/functions";
 import puppeteer from "puppeteer-core";
 import chrome from "chrome-aws-lambda";
 import wait from "waait";
+const getOptions = async () => {
+  const isDev: boolean = process?.env?.NODE_ENV === "development";
+  console.log({ isDev });
 
-// const cached = new Map();
-
-const getScreenShot = async () => {
-  const browser = await puppeteer.launch({
+  const option = {
     product: "chrome",
-    executablePath: await chrome.executablePath,
-    args: chrome.args,
+    args: [],
+    executablePath: "",
     headless: true,
     defaultViewport: {
       width: 1200,
       height: 630,
       deviceScaleFactor: 1.5,
     },
-  });
+  };
+
+  if (isDev) {
+    option.executablePath = process.env.CHROME_EXECUTEABLE_PATH as string;
+  } else {
+    // @ts-ignore
+    option.args = chrome.args;
+    option.executablePath = await chrome.executablePath;
+  }
+
+  return option;
+};
+
+const getScreenShot = async () => {
+  const options = await getOptions();
+
+  // @ts-ignore
+  const browser = await puppeteer.launch(options);
 
   const page = await browser.newPage();
   await page.goto(`${process.env.CLIENT_URL}/thumbnail`);
@@ -27,12 +44,12 @@ const getScreenShot = async () => {
   // const base64Image = buffer.toString("base64");
   // cached.set("heyy", base64Image);
 
-  // const headingText = await page.$eval(
-  //   "#__layout > main > div > div.flex-1 > h3",
-  //   (el) => el.textContent
-  // );
+  const headingText = await page.$eval(
+    "#__layout > main > div > div.flex-1 > h3",
+    (el) => el.textContent
+  );
 
-  // console.log(headingText);
+  console.log(headingText);
 
   browser.close();
 
