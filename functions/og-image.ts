@@ -20,9 +20,7 @@ const getScreenShot = async () => {
   });
 
   const page = await browser.newPage();
-  await page.goto(
-    "https://wesbos.com/thumbnail?title=Heyyyyy&url=https%3A%2F%2Fwesbos.com%2Fparity-purchasing-power"
-  );
+  await page.goto(`${process.env.CLIENT_URL}/thumbnail`);
   await wait(500);
   const buffer = await page.screenshot({ type: "png" });
   const base64Image = buffer.toString("base64");
@@ -38,5 +36,4 @@ export const handler: Handler = async (event, context) => {
     body: base64Image,
     isBase64Encoded: true,
   };
-  // return response(base64Image , 200);
 };
