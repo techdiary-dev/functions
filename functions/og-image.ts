@@ -8,8 +8,9 @@ import wait from "waait";
 const getScreenShot = async () => {
   const browser = await puppeteer.launch({
     product: "chrome",
-    executablePath:
-      process.env.CHROME_EXECUTEABLE_PATH || (await chrome.executablePath),
+    executablePath: process.env.CHROME_EXECUTEABLE_PATH
+      ? process.env.CHROME_EXECUTEABLE_PATH
+      : await chrome.executablePath,
     args: chrome.args,
     headless: true,
     defaultViewport: {
@@ -46,7 +47,6 @@ export const handler: Handler = async (event, context) => {
   return {
     statusCode: 200,
     body: JSON.stringify({
-      message: "Go Serverless v1.0! Your function executed successfully!",
       base64Image,
     }),
     // isBase64Encoded: true,
